@@ -8,12 +8,8 @@ import { handle_promise } from 'svelte/internal';
       zoom: 11,
   };
   let MAP_EL;
-  function handle(ev){
-    let latlng = ev.detail.latlng;
-    console.log(latlng)
-    let map = MAP_EL.getMap();
-    map.panTo(latlng)
-  }
+  let latlng;
+
   const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   const tileLayerOptions = {
       minZoom: 0,
@@ -21,10 +17,16 @@ import { handle_promise } from 'svelte/internal';
       maxNativeZoom: 19,
       attribution: "© OpenStreetMap contributors",
   };
+  $: {
+    if(MAP_EL && latlng){
+      let map = MAP_EL.getMap();
+      map.panTo(latlng)
+    }    
+  }
 </script>
 
 <div class="example">
-  <LeafletMap bind:this={MAP_EL} events={['click']}  on:click={handle} options={mapOptions}>
+  <LeafletMap bind:this={MAP_EL} events={['click']}  on:click={(ev) => latlng = ev.detail.latlng} options={mapOptions}>
       <TileLayer url={tileUrl} options={tileLayerOptions}/>
   </LeafletMap>
 </div>
