@@ -991,6 +991,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@popperjs/core@^2.11.5":
+  version "2.11.5"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
+  integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz#04bc0608f4aa4b2e4b1aebf284344d0f68fda283"
@@ -4074,6 +4079,11 @@ svelte-leafletjs@^0.8.2:
   dependencies:
     axios "^0.25.0"
     leaflet "^1.7.1"
+
+svelte-popperjs@^1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/svelte-popperjs/-/svelte-popperjs-1.2.8.tgz#b6231164c5f4f91bffcfa486a09b05bc0d8e8700"
+  integrity sha512-tbZmJWpNxAuv+kLNopcF9f0MXQeCHLmafl4IyVnPI1IJWjgkHUFTTL2HhVMDrRm6jsy7O/RR6AAVTeYe4p7lTQ==
 
 svelte-preprocess@^4.0.0, svelte-preprocess@^4.10.1:
   version "4.10.4"

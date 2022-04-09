@@ -23,11 +23,18 @@
   
 </script>
 
-<button on:click={handleGo} class="btn btn-warning" disabled={!isLatitude($data.lat) || !isLongitude($data.lng)}>Ir</button>
-
-<div class="grid grid-cols-2 gap-4">
-  <Input bind:value={$data.lat} variant="" label="Latitud" />
-  <Input bind:value={$data.lng} variant="warning" label="Longitud" />
+<div class="flex flex-row">
+    <div class="basis-2/5">
+      <Input bind:value={$data.lat} variant="" label="Latitud">
+          My tooltip
+      </Input>
+    </div>
+    <div class="basis-1/5">
+      <button on:click={handleGo} class="btn btn-warning" disabled={!isLatitude($data.lat) || !isLongitude($data.lng)}>Ir</button>
+    </div>
+    <div class="basis-2/5">
+      <Input bind:value={$data.lng} variant="warning" label="Longitud" />
+    </div>
 </div>
-{JSON.stringify(latlng)}
+
 <Mapa bind:latlng={latlng} />
