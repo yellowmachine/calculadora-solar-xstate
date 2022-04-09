@@ -14,6 +14,7 @@
   }
 
   function handleGo(){
+    console.log($data.lat, $data.lng, isLatitude($data.lat) && isLongitude($data.lng))
     if(isLatitude($data.lat) && isLongitude($data.lng))
       latlng = {lat: $data.lat, lng: $data.lng}
   }
@@ -23,7 +24,7 @@
   
 </script>
 
-<div class="flex flex-row">
+<div class="flex flex-row py-2">
     <div class="basis-2/5">
       <Input bind:value={$data.lat} variant="" label="Latitud">
           My tooltip
