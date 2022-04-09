@@ -1,5 +1,6 @@
 <script>  
   import Mapa from '../lib/Mapa.svelte'
+  import Input from '../lib/Input.svelte'
   let lat = 1.364917;
   let lng = 103.822872;
   let latlng={lat, lng}
@@ -12,20 +13,14 @@
     return true
   }
 
-  $: if(isLatitude(lat) && isLongitude(lng)) latlng = {lat, lng}
+  $: lat = latlng.lat
+  $: lng = latlng.lng
+  //$: if(isLatitude(lat) && isLongitude(lng)) latlng = {lat, lng}
+  
 </script>
 
-<div class="mb-4">
-  <label class="block text-gray-700 text-sm font-bold mb-2" for="latitude">
-    Latitud
-  </label>
-  <input bind:value={lat} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="latitude" type="text" placeholder="Latitud">
-</div>
-<div class="mb-4">
-  <label class="block text-gray-700 text-sm font-bold mb-2" for="longitude">
-    Longitud
-  </label>
-  <input bind:value={lng} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="longitude" type="text" placeholder="Longitud">
-</div>
+<button on:click={()=>latlng = {lat, lng}} class="btn btn-warning">Ir</button>
+<Input bind:value={lat} variant="" label="Latitud" />
+<Input bind:value={lng} variant="warning" label="Longitud" />
 {JSON.stringify(latlng)}
 <Mapa bind:latlng={latlng} />
