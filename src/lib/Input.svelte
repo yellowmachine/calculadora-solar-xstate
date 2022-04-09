@@ -1,4 +1,5 @@
 <script>
+    import {clickOutside} from './outside.js';
     import { createPopperActions } from 'svelte-popperjs';
     const [popperRef, popperContent] = createPopperActions();
     const popperOptions = {
@@ -13,7 +14,7 @@
     export let variant;
 </script>
 
-<div class="form-control">
+<div class="form-control" use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group input-group-vertical">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
@@ -23,7 +24,6 @@
 {#if showTooltip}
 <div id="tooltip" use:popperContent={popperOptions}>
     <slot /> 
-    <span on:click={()=>showTooltip = false}>close</span>
     <div id="arrow" data-popper-arrow />
 </div>
   
