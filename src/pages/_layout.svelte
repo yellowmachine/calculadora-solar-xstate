@@ -5,9 +5,6 @@
 
 <main>
   <img src="/favicon.svg" alt="PWA Logo" width="60" height="60"/>
-  <h1>Svelte PWA!</h1>
-
-  <div class="built">Built at: { date }</div>
 
   <slot />
 
