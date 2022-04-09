@@ -26,7 +26,8 @@
     "run-build-sw-reloadsw-claims": "cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ SOURCE_MAP=true CLAIMS=true RELOAD_SW=true SW=true vite build",
     "serve": "serve dist",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "deploy": "yarn build && surge --domain https://rightful-number.surge.sh dist/"
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.5",

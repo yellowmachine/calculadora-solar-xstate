@@ -16,7 +16,7 @@
             r && setInterval(() => {
                 console.log('Checking for sw update')
                 r.update()
-            }, 20000 /* 20s for testing purposes */)
+            }, 15*60*1000 /* 20s for testing purposes */)
         }
         else {
             console.log(`SW Registered: ${r}`)
