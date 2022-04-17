@@ -10,8 +10,8 @@ const pwaOptions = {
   //css: {postcss,},
   includeAssets: ['favicon.svg'],
   manifest: {
-    name: 'PWA Router',
-    short_name: 'PWA Router',
+    name: 'Calculadora Solar',
+    short_name: 'Calculadora Solar',
     theme_color: '#ffffff',
     icons: [
       {
