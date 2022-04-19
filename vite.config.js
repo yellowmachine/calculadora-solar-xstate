@@ -2,12 +2,10 @@ import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { VitePWA } from 'vite-plugin-pwa'
 import replace from '@rollup/plugin-replace'
-//import postcss from './postcss.config.js'
 
 const pwaOptions = {
   mode: 'development',
   base: '/',
-  //css: {postcss,},
   includeAssets: ['favicon.svg'],
   manifest: {
     name: 'Calculadora Solar',
