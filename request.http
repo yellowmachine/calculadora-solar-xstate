@@ -1,0 +1,10 @@
+POST http://calculadorasolar-codelrond78.koyeb.app/jsonpayload HTTP/1.1
+content-type: application/json
+
+{
+    "a": 5.3
+}
+
+###
+
+POST http://oracle.devme.fun:3000 HTTP/1.1

@@ -21,7 +21,8 @@
   }
 
   async function handleCors(){
-    const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
+    //const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
+    const response = await axios.post("http://oracle.devme.fun/jsonpayload", {a: 5.3})    
     console.log(response)
   }
 
