@@ -44,7 +44,7 @@
   $: {
     const {lat, lng} = latlng
     if(isLatitude(lat) && isLongitude(lng) && isAzimut(azimut) && isAngle(angle))
-      stream.next(latlng)
+      stream.next({lat, lng, azimut, angle})
   }
 
   $: console.log("Radiation after debounce and switchMap", radiation)

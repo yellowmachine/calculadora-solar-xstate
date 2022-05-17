@@ -1,15 +1,15 @@
 import { switchMap, from, tap, Subject, debounceTime, skip } from 'rxjs';
 import { writable } from 'svelte/store';
 import { onDestroy } from 'svelte';
+import axios from 'axios';
 
 const T = 2000;
 
 export const radiation = writable({});
 
-export async function getRadiation(latlng){
+export async function getRadiation({lat, lng, azimut, angle}){
     try{
-        console.log('Fetch radiation:', latlng)
-        return {a: 3, ...latlng}
+        return await axios.get(`/api/radiation?lat={lat}&lng={lng}&azimut={azimut}&angle={angle}`)
     }catch(error){
         return {error}
     }
@@ -29,11 +29,7 @@ export function debounceRadiation(){
           return from(getRadiation(x)) 
       }),
       tap(x => {
-          if(x.error){
-            //set error
-          }else{
-            radiation.set(x)
-          }
+        radiation.set(x)
       })
     ).subscribe({
       next: (v) => console.log(`observer: ${JSON.stringify(v)}`),
