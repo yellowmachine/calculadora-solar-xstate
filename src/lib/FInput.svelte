@@ -18,7 +18,7 @@
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
-      <input on:input name={name} type="text" placeholder="Type here" class="input input-bordered input-{variant} w-full max-w-xs">
+      <input on:input name={name} type="number" class="input input-bordered input-{variant} w-full max-w-xs">
     </label>
 </div>
 {#if showTooltip}

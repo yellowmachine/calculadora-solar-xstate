@@ -8,6 +8,11 @@ const suite = create((data) => {
   test('yearconsume', 'El consumo anual debe ser un número', () => {
     enforce(data.yearconsume).isNumber();
   });
+
+  test('power', 'La potencia es obligatoria', () => {
+    enforce(data.power).isNotBlank();
+  });
+
 });
 
 export default suite;

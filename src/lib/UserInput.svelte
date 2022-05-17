@@ -25,7 +25,7 @@ const { form, data } = createForm({
 })
 
 function canCalculate(){
-    return $radiation && !$radiation.error
+    return $radiation && !$radiation.error && suite($data).isValid()
 }
 
 function errorsByKeys(keys){
@@ -39,18 +39,69 @@ function errorsByKeys(keys){
 <form use:form>
 
 <Grouper label={"Consumo"} errors={errorsByKeys(['yearconsume'])}>
+    <VStack>
+        <HStack>
+            <CheckInput name="usecsv" label="Consumo real o aproximado" />
+        </HStack>
+        <HStack>
+            <VStack>
+                <CheckInput name="ree" label="Perfil oficial ree" />
+                <Input name="yearconsume" label="Consumo anual" variant="" />
+                <SelectInput name="typeyearconsume" label="Tipo de consumo anual" options={optstypeyearconsume} />
+                <SelectInput name="typedayconsume" label="Tipo de consumo diario" options={optstypedayconsume} />
+            </VStack>
+            <div>
+                Consume File Input ...
+            </div>
+        </HStack>
+    </VStack>
+</Grouper>
+
+<Grouper label={"Tarifa"} errors={errorsByKeys(['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
     <HStack>
-        <VStack>
-            <CheckInput name="ree" label="Perfil oficial ree" />
-            <Input name="yearconsume" label="Consumo anual" variant="" />
-            <SelectInput name="typeyearconsume" label="Tipo de consumo anual" options={optstypeyearconsume} />
-            <SelectInput name="typedayconsume" label="Tipo de consumo diario" options={optstypedayconsume} />
-        </VStack>
-        <div>
-            Consume File Input ...
-        </div>
-    </HStack>
-    <HStack></HStack>
+        <Input name="power" label="" variant="" />
+        <Input name="powerrentedvalle" label="" variant="" />
+      </HStack>
+      <HStack>
+        <Input name="fixedrate" label="" variant="" />
+        <Input name="fixedvalle" label="" variant="" />
+      </HStack>
+      <HStack>
+        <Input name="vallerate" label="" variant="" />
+        <Input name="vallellano" label="" variant="" />
+        <Input name="picorate" label="" variant="" />
+      </HStack>
+      <HStack>
+        <CheckInput name="rented" label="" />
+        <SelectInput name="socialb" label="" options={[]} />
+      </HStack>
+      <HStack>
+        <!--
+            <SocialBonePercentage />
+            <OtherConcepts />
+        -->
+      </HStack>     
+</Grouper>
+
+<Grouper label={"Paneles"} errors={errorsByKeys(['numpanels', 'panelpower', 'batterycapacity', 'inversorpower'])}>
+    <HStack>
+      <Input name="numpanels" label="" variant="" />
+      <Input name="panelpower" label="" variant="" />
+    </HStack>     
+    <HStack>
+      <Input name="batterycapacity" label="" variant="" />
+      <Input name="inversorpower" label="" variant="" />
+    </HStack>     
+</Grouper>
+
+<Grouper label="Coche eléctrico" errors={errorsByKeys(['carannualkm', 'electriccarpower', 'carefficiency'])} >
+    <HStack>
+      <Input name="carannualkm" label="" variant="" />
+      <Input name="electriccarpower" label="" variant="" />            
+    </HStack>     
+    <HStack>
+      <Input name="carefficiency" label="" variant="" />
+    </HStack>     
 </Grouper>
 
 {#if canCalculate()}

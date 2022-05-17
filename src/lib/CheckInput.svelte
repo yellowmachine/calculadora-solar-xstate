@@ -14,7 +14,7 @@
 </script>
 
 <div class="form-control" use:clickOutside on:click_outside={()=>showTooltip = false}>
-    <label class="input-group">
+    <label class="input-group cursor-pointer">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
       <input on:change type="checkbox" name={name} class="checkbox" />
