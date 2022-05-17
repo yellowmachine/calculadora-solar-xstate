@@ -27,7 +27,7 @@
     "serve": "serve dist",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "deploy": "surge --domain https://rightful-number.surge.sh dist/"
+    "surge": "surge --domain https://rightful-number.surge.sh dist/"
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.5",

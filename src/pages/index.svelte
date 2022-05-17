@@ -4,8 +4,11 @@
   import data from '../lib/form.js'
   import axios from 'axios'
   import {debounceRadiation, radiation} from '../lib/radiation'
+  import UserInput from '../lib/UserInput.svelte'
 
   let latlng={lat: $data.lat, lng: $data.lng}
+  let azimut = 0.0;
+  let angle = 0.0;
   let stream = debounceRadiation()
 
   function isLatitude(v){
@@ -16,8 +19,15 @@
     return -180.0 <= v && v <= 180.0
   }
 
+  function isAngle(v){
+    return true
+  }
+
+  function isAzimut(v){
+    return true
+  }
+
   function handleGo(){
-    console.log($data.lat, $data.lng, isLatitude($data.lat) && isLongitude($data.lng))
     if(isLatitude($data.lat) && isLongitude($data.lng))
       latlng = {lat: $data.lat, lng: $data.lng}
   }
@@ -33,7 +43,7 @@
 
   $: {
     const {lat, lng} = latlng
-    if(isLatitude(lat) && isLongitude(lng))
+    if(isLatitude(lat) && isLongitude(lng) && isAzimut(azimut) && isAngle(angle))
       stream.next(latlng)
   }
 
@@ -55,6 +65,20 @@
     <div class="basis-2/5">
       <Input bind:value={$data.lng} variant="warning" label="Longitud" />
     </div>
+    <div>
+      <div class="basis-1/2">
+        <Input bind:value={azimut} variant="" label="Azimut">
+          My tooltip
+        </Input>
+      </div>
+      <div class="basis-1/2">
+        <Input bind:value={angle} variant="" label="Ángulo">
+          My tooltip
+        </Input>
+      </div>
+    </div>
 </div>
 
 <Mapa bind:latlng={latlng} />
+
+<UserInput />

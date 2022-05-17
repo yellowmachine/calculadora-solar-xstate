@@ -9,7 +9,7 @@ export const radiation = writable({});
 export async function getRadiation(latlng){
     try{
         console.log('Fetch radiation:', latlng)
-        return {a: 3}
+        return {a: 3, ...latlng}
     }catch(error){
         return {error}
     }
