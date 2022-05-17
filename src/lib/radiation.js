@@ -9,9 +9,11 @@ export const radiation = writable({});
 
 export async function getRadiation({lat, lng, azimut, angle}){
     try{
-        return await axios.get(`/api/radiation?lat={lat}&lng={lng}&azimut={azimut}&angle={angle}`)
+        const {data} = await axios.get(`/api/radiation?lat=${lat}&lng=${lng}&azimut=${azimut}&angle=${angle}`)
+        return data
     }catch(error){
-        return {error}
+        console.log(error)
+        return {error: true}
     }
     finally{
         

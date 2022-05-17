@@ -65,6 +65,7 @@
     <div class="basis-2/5">
       <Input bind:value={$data.lng} variant="warning" label="Longitud" />
     </div>
+    <p />
     <div>
       <div class="basis-1/2">
         <Input bind:value={azimut} variant="" label="Azimut">
