@@ -7,11 +7,14 @@ import HStack from './HStack.svelte'
 import Input from './FInput.svelte';
 import SelectInput from './SelectInput.svelte';
 import CheckInput from './CheckInput.svelte';
+import FileDropZone from './FileDropZone.svelte';
 import { validator } from '@felte/validator-vest';
 import suite from './suite.UserInput';
 
 export let deep;
 export let width;
+
+let csv;
 
 const optstypeyearconsume = [{value: 0, description: "verano"}]
 const optstypedayconsume = [{value: 0, description: "mañana"}]
@@ -20,6 +23,7 @@ const { form, data } = createForm({
     extend: validator({ suite }), 
     onSubmit: (values) => {
         console.log(deep, width)
+        //console.log(csv)
         console.log(values)
     },
 })
@@ -51,7 +55,7 @@ function errorsByKeys(keys){
                 <SelectInput name="typedayconsume" label="Tipo de consumo diario" options={optstypedayconsume} />
             </VStack>
             <div>
-                Consume File Input ...
+                <FileDropZone bind:data={csv} />
             </div>
         </HStack>
     </VStack>

@@ -80,6 +80,7 @@
     "daisyui": "^2.13.3",
     "felte": "^1.1.5",
     "rxjs": "^7.5.5",
+    "svelte-file-dropzone": "^1.0.0-dev.1",
     "vest": "^4.3.1"
   }
 }
