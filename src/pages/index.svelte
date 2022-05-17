@@ -65,19 +65,20 @@
     <div class="basis-2/5">
       <Input bind:value={$data.lng} variant="warning" label="Longitud" />
     </div>
-    <p />
-    <div>
-      <div class="basis-1/2">
-        <Input bind:value={azimut} variant="" label="Azimut">
-          My tooltip
-        </Input>
-      </div>
-      <div class="basis-1/2">
-        <Input bind:value={angle} variant="" label="Ángulo">
-          My tooltip
-        </Input>
-      </div>
-    </div>
+</div>
+<div class="flex flex-row py-2">
+  <div class="basis-2/5">
+    <Input bind:value={azimut} variant="" label="Azimut">
+      My tooltip
+    </Input>
+  </div>
+  <div class="basis-1/5">
+  </div>
+  <div class="basis-2/5">
+    <Input bind:value={angle} variant="" label="Ángulo">
+      My tooltip
+    </Input>
+  </div>
 </div>
 
 <Mapa bind:latlng={latlng} />
