@@ -6,8 +6,8 @@
   import {debounceRadiation, radiation} from '../lib/radiation'
   import UserInput from '../lib/UserInput.svelte'
   import Grouper from '../lib/Grouper.svelte'
-  import VStack from 'src/lib/VStack.svelte'
-  import HStack from 'src/lib/HStack.svelte'
+  import VStack from '../lib/VStack.svelte'
+  import HStack from '../lib/HStack.svelte'
 
   let latlng={lat: $data.lat, lng: $data.lng}
   let azimut = 0.0;
@@ -75,20 +75,28 @@
 <Grouper label={"Cubierta"}>
   <VStack>
     <HStack>
-      <Input bind:value={azimut} variant="" label="Azimut">
-        My tooltip
-      </Input>
-      <Input bind:value={angle} variant="" label="Ángulo">
-        My tooltip
-      </Input>
+      <div class="basis-1/2">
+        <Input bind:value={azimut} variant="" label="Azimut">
+          My tooltip
+        </Input>
+      </div>
+      <div class="basis-1/2">
+        <Input bind:value={angle} variant="" label="Ángulo">
+          My tooltip
+        </Input>
+      </div>
     </HStack>
     <HStack>
-      <Input bind:value={width} variant="" label="Anchura">
-        My tooltip
-      </Input>
-      <Input bind:value={deep} variant="" label="Profundidad">
-        My tooltip
-      </Input>
+      <div class="basis-1/2">
+        <Input bind:value={width} variant="" label="Anchura">
+          My tooltip
+        </Input>
+      </div>
+      <div class="basis-1/2">
+        <Input bind:value={deep} variant="" label="Profundidad">
+          My tooltip
+        </Input>
+      </div>
     </HStack>
   </VStack>
 </Grouper>

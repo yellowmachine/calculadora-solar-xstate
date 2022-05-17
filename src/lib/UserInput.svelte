@@ -2,8 +2,8 @@
 import {radiation} from './radiation'
 import { createForm } from 'felte';
 import Grouper from './Grouper.svelte'
-import VStack from 'src/lib/VStack.svelte'
-import HStack from 'src/lib/HStack.svelte'
+import VStack from './VStack.svelte'
+import HStack from './HStack.svelte'
 
 export let deep;
 export let width;

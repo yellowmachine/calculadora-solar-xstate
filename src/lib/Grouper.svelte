@@ -4,7 +4,7 @@
 </script>
 
 <div>
-    <button on:click={()=>show=!show}>{label}</button>
+    <button class="btn btn-info" on:click={()=>show=!show}>{label}</button>
     {#if show}
         <slot />
     {/if}
