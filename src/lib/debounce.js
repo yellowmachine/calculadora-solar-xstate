@@ -1,8 +1,9 @@
-import { derived } from 'svelte/store';
+import { derived, get } from 'svelte/store';
 
 export default function(a, t){
 	return derived(a, ($a, set) => {
-        let timeoutId = setTimeout(() => set($a), t);
+        const v = {...get(a)}
+        let timeoutId = setTimeout(() => set(v), t);
 		return () => clearTimeout(timeoutId) 
 	});
 }

@@ -4,7 +4,7 @@
   import data from '../lib/form.js'
   import axios from 'axios'
   import debounced from '../lib/debounce'
-  import {getRadiation} from '../lib/radiation'
+  import {getRadiation, radiation, isFetchingRadiation} from '../lib/radiation'
 
   let latlng={lat: $data.lat, lng: $data.lng}
 
@@ -33,7 +33,14 @@
   $: $data.lat = latlng.lat
   $: $data.lng = latlng.lng
 
-  $: getRadiation($latlngDebounced)
+  $: {
+    const {lat, lng} = $latlngDebounced
+    if(isLatitude(lat) && isLongitude(lng))
+      getRadiation($latlngDebounced)
+  }
+
+  $: console.log(radiation)
+  $: console.log(isFetchingRadiation)
   
 </script>
 
