@@ -29,7 +29,7 @@ const { form, data } = createForm({
 })
 
 function canCalculate(){
-    return $radiation && !$radiation.error && suite($data).isValid()
+    return $radiation && !$radiation.error && suite($data).isValid() //check usecsv and file ok!
 }
 
 function errorsByKeys(keys){
