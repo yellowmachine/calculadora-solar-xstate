@@ -3,13 +3,10 @@
   import Input from '../lib/Input.svelte'
   import data from '../lib/form.js'
   import axios from 'axios'
-  //import debounced from '../lib/debounce'
-  import {debounceRadiation, radiation, isFetchingRadiation} from '../lib/radiation'
+  import {debounceRadiation, radiation} from '../lib/radiation'
 
   let latlng={lat: $data.lat, lng: $data.lng}
   let stream = debounceRadiation()
-
-  //let latlngDebounced = debounced(latlng, 2000)
 
   function isLatitude(v){
     return -90.0 <= v && v <= 90.0
@@ -40,7 +37,7 @@
       stream.next(latlng)
   }
 
-  $: console.log("Radiation after debounce and switchma", radiation)
+  $: console.log("Radiation after debounce and switchMap", radiation)
   
 </script>
 
