@@ -56,7 +56,11 @@
   
 </script>
 
+<!--
 <button on:click={handleCors} class="btn btn-warning">make a cors request</button>
+-->
+
+<a href="/results" class="link">Ir a resultados</a>
 
 <HStack>
   <div class="basis-2/5">
