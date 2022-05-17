@@ -14,7 +14,7 @@
     "start-sw-claims-reloadsw": "npm run run-build-sw-reloadsw-claims && npm run serve",
     "dev": "run-p dev:*",
     "dev:routify": "routify",
-    "dev:dev": "cross-env DEBUG=vite-plugin-pwa:* vite",
+    "dev:dev": "cross-env DEBUG=vite-plugin-pwa:* vite --port $PORT",
     "build": "routify -b && cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ SOURCE_MAP=true vite build",
     "run-build": "routify -b && cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ SOURCE_MAP=true vite build",
     "run-build-reloadsw": "routify -b && cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ SOURCE_MAP=true RELOAD_SW=true vite build",
