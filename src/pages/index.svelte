@@ -3,8 +3,12 @@
   import Input from '../lib/Input.svelte'
   import data from '../lib/form.js'
   import axios from 'axios'
+  import debounced from '../lib/debounce'
+  import {getRadiation} from '../lib/radiation'
 
   let latlng={lat: $data.lat, lng: $data.lng}
+
+  let latlngDebounced = debounced(latlng, 2000)
 
   function isLatitude(v){
     return -90.0 <= v && v <= 90.0
@@ -21,13 +25,15 @@
   }
 
   async function handleCors(){
-    //const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
-    const response = await axios.post("http://oracle.devme.fun/jsonpayload", {a: 5.3})    
+    const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
+    //const response = await axios.post("http://oracle.devme.fun/jsonpayload", {a: 5.3})    
     console.log(response)
   }
 
   $: $data.lat = latlng.lat
   $: $data.lng = latlng.lng
+
+  $: getRadiation($latlngDebounced)
   
 </script>
 

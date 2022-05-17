@@ -7,4 +7,13 @@ content-type: application/json
 
 ###
 
+POST http://localhost:8000/jsonpayload HTTP/1.1
+content-type: application/json
+
+{
+    "a": 5.3
+}
+
+###
+
 POST http://oracle.devme.fun:3000 HTTP/1.1
