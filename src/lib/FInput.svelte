@@ -12,13 +12,14 @@
     export let name;
     export let label;
     export let variant;
+    export let defaultValue = 0;
 </script>
 
 <div class="form-control" use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
-      <input on:input name={name} type="number" class="input input-bordered input-{variant} w-full max-w-xs">
+      <input value={defaultValue} on:input name={name} type="number" class="input input-bordered input-{variant} w-full max-w-xs">
     </label>
 </div>
 {#if showTooltip}
