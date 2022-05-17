@@ -15,7 +15,7 @@
 </script>
 
 <div class="form-control" use:clickOutside on:click_outside={()=>showTooltip = false}>
-    <label class="input-group input-group-vertical">
+    <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
       <input bind:value={value} type="text" placeholder="Type here" class="input input-bordered input-{variant} w-full max-w-xs">

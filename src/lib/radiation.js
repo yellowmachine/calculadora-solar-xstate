@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const T = 2000;
 
-export const radiation = writable({});
+export const radiation = writable({error: false});
 
 export async function getRadiation({lat, lng, azimut, angle}){
     try{
@@ -27,6 +27,7 @@ export function debounceRadiation(){
       skip(1),
       debounceTime(T),
       switchMap((x) => {
+          console.log('dentro de switchMap', x)
           radiation.set(null)
           return from(getRadiation(x)) 
       }),

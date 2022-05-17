@@ -5,10 +5,15 @@
   import axios from 'axios'
   import {debounceRadiation, radiation} from '../lib/radiation'
   import UserInput from '../lib/UserInput.svelte'
+  import Grouper from '../lib/Grouper.svelte'
+  import VStack from 'src/lib/VStack.svelte'
+  import HStack from 'src/lib/HStack.svelte'
 
   let latlng={lat: $data.lat, lng: $data.lng}
   let azimut = 0.0;
   let angle = 0.0;
+  let deep = 1;
+  let width = 1;
   let stream = debounceRadiation()
 
   function isLatitude(v){
@@ -53,34 +58,42 @@
 
 <button on:click={handleCors} class="btn btn-warning">make a cors request</button>
 
-<div class="flex flex-row py-2">
-    <div class="basis-2/5">
-      <Input bind:value={$data.lat} variant="" label="Latitud">
-          My tooltip
-      </Input>
-    </div>
-    <div class="basis-1/5">
-      <button on:click={handleGo} class="btn btn-warning" disabled={!isLatitude($data.lat) || !isLongitude($data.lng)}>Ir</button>
-    </div>
-    <div class="basis-2/5">
-      <Input bind:value={$data.lng} variant="warning" label="Longitud" />
-    </div>
-</div>
-<div class="flex flex-row py-2">
+<HStack>
   <div class="basis-2/5">
-    <Input bind:value={azimut} variant="" label="Azimut">
-      My tooltip
+    <Input bind:value={$data.lat} variant="" label="Latitud">
+        My tooltip
     </Input>
   </div>
   <div class="basis-1/5">
+    <button on:click={handleGo} class="btn btn-warning" disabled={!isLatitude($data.lat) || !isLongitude($data.lng)}>Ir</button>
   </div>
   <div class="basis-2/5">
-    <Input bind:value={angle} variant="" label="Ángulo">
-      My tooltip
-    </Input>
+    <Input bind:value={$data.lng} variant="warning" label="Longitud" />
   </div>
-</div>
+</HStack>
+
+<Grouper label={"Cubierta"}>
+  <VStack>
+    <HStack>
+      <Input bind:value={azimut} variant="" label="Azimut">
+        My tooltip
+      </Input>
+      <Input bind:value={angle} variant="" label="Ángulo">
+        My tooltip
+      </Input>
+    </HStack>
+    <HStack>
+      <Input bind:value={width} variant="" label="Anchura">
+        My tooltip
+      </Input>
+      <Input bind:value={deep} variant="" label="Profundidad">
+        My tooltip
+      </Input>
+    </HStack>
+  </VStack>
+</Grouper>
+
 
 <Mapa bind:latlng={latlng} />
 
-<UserInput />
+<UserInput {deep} {width} />
