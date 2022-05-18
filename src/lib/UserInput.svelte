@@ -51,113 +51,115 @@ function errorsByKeys(keys){
 
 </script>
 
-<form use:form>
+<div class="w-full">
+  <form use:form>
 
-  <Grouper label={"Cubierta"}>
-    <VStack>
-      <HStack>
-        <div class="basis-1/2">
-          <RInput bind:value={azimut} variant="" label="Azimut">
-            My tooltip
-          </RInput>
-        </div>
-        <div class="basis-1/2">
-          <RInput bind:value={angle} variant="" label="Ángulo">
-            My tooltip
-          </RInput>
-        </div>
-      </HStack>
-      <HStack>
-        <div class="basis-1/2">
-          <Input name="width" variant="" label="Anchura">
-            My tooltip
-          </Input>
-        </div>
-        <div class="basis-1/2">
-          <Input name="deep" variant="" label="Profundidad">
-            My tooltip
-          </Input>
-        </div>
-      </HStack>
-    </VStack>
-  </Grouper>  
-
-  <slot />
-
-<Grouper label={"Consumo"} errors={errorsByKeys(['yearconsume'])}>
-    <VStack>
+    <Grouper label={"Cubierta"} show={true} always={true}>
+      <VStack>
         <HStack>
-            <CheckInput name="usecsv" label="Consumo real o aproximado" />
+          <div class="basis-1/2">
+            <RInput bind:value={azimut} variant="" label="Azimut">
+              My tooltip
+            </RInput>
+          </div>
+          <div class="basis-1/2">
+            <RInput bind:value={angle} variant="" label="Ángulo">
+              My tooltip
+            </RInput>
+          </div>
         </HStack>
         <HStack>
-            <VStack>
-                <CheckInput name="ree" label="Perfil oficial ree" />
-                <Input name="yearconsume" label="Consumo anual" variant="" />
-                <SelectInput name="typeyearconsume" label="Tipo de consumo anual" options={optstypeyearconsume} />
-                <SelectInput name="typedayconsume" label="Tipo de consumo diario" options={optstypedayconsume} />
-            </VStack>
-            <div>
-                <FileDropZone bind:data={csv} />
-            </div>
+          <div class="basis-1/2">
+            <Input name="width" variant="" label="Anchura">
+              My tooltip
+            </Input>
+          </div>
+          <div class="basis-1/2">
+            <Input name="deep" variant="" label="Profundidad">
+              My tooltip
+            </Input>
+          </div>
         </HStack>
-    </VStack>
-</Grouper>
+      </VStack>
+    </Grouper>  
 
-<Grouper label={"Tarifa"} errors={errorsByKeys(['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
-  <VStack>
-      <HStack>
-        <Input name="power" label="Potencia contratada kW" variant={variant("power")} />
-        <Input name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle")} />
-      </HStack>
-      <HStack>
-        <Input name="fixedrate" label="Tarifa de término fijo pico €" variant={variant("fixedrate")} />
-        <Input name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant("fixedvalle")} />
-      </HStack>
-      <HStack>
-        <Input name="vallerate" label="Tarifa de energía valle €" variant={variant("vallerate")} />
-        <Input name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant("vallellano")} />
-        <Input name="picorate" label="Tarifa de energía pico €" variant={variant("picorate")} />
-      </HStack>
-      <HStack>
-        <CheckInput name="rented" label="Alquiler contador" />
-        <CheckInput name="socialb" label="Bono Social" />
-      </HStack>
-      <HStack>
-        <SelectInput name="bonopercentage" label="Bono social porcentaje" options={optsbonopercentage} />
-        <Input name="otherconcepts" label="Otros conceptos" variant={variant("otherconcepts")} />
-      </HStack>
-  </VStack>     
-</Grouper>
+    <slot />
 
-<Grouper label={"Paneles"} errors={errorsByKeys(['numpanels', 'panelpower', 'batterycapacity', 'inversorpower'])}>
-  <VStack>  
-    <HStack>
-      <Input name="numpanels" label="Número de paneles" variant={variant("numpanels")} />
-      <Input name="panelpower" label="Potencia del panel (Wp)" variant={variant("panelpower")} />
-    </HStack>     
-    <HStack>
-      <Input name="batterycapacity" label="Capacidad de la batería" variant={variant("batterycapacity")} />
-      <Input name="inversorpower" label="Potencia del inversor" variant={variant("inversorpower")} />
-    </HStack>
-  </VStack>     
-</Grouper>
+  <Grouper label={"Consumo"} errors={errorsByKeys(['yearconsume'])}>
+      <VStack>
+          <HStack>
+              <CheckInput name="usecsv" label="Consumo real o aproximado" />
+          </HStack>
+          <HStack>
+              <VStack>
+                  <CheckInput name="ree" label="Perfil oficial ree" />
+                  <Input name="yearconsume" label="Consumo anual" variant="" />
+                  <SelectInput name="typeyearconsume" label="Tipo de consumo anual" options={optstypeyearconsume} />
+                  <SelectInput name="typedayconsume" label="Tipo de consumo diario" options={optstypedayconsume} />
+              </VStack>
+              <div>
+                  <FileDropZone bind:data={csv} />
+              </div>
+          </HStack>
+      </VStack>
+  </Grouper>
 
-<Grouper label="Coche eléctrico" errors={errorsByKeys(['carannualkm', 'electriccarpower', 'carefficiency'])} >
-  <VStack>  
-    <HStack>
-      <Input class="w-1/3" name="carannualkm" label="Kilómetros anuales del coche" variant={variant("carannualkm")} />
-      <div class="w-1/3"></div>
-      <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
-    </HStack>     
-    <HStack>
-      <Input name="carefficiency" label="Eficiencia del coche" variant={variant("carefficiency")} />
-    </HStack>
-  </VStack>     
-</Grouper>
+  <Grouper label={"Tarifa"} errors={errorsByKeys(['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
+    <VStack>
+        <HStack>
+          <Input name="power" label="Potencia contratada kW" variant={variant("power")} />
+          <Input name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle")} />
+        </HStack>
+        <HStack>
+          <Input name="fixedrate" label="Tarifa de término fijo pico €" variant={variant("fixedrate")} />
+          <Input name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant("fixedvalle")} />
+        </HStack>
+        <HStack>
+          <Input name="vallerate" label="Tarifa de energía valle €" variant={variant("vallerate")} />
+          <Input name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant("vallellano")} />
+          <Input name="picorate" label="Tarifa de energía pico €" variant={variant("picorate")} />
+        </HStack>
+        <HStack>
+          <CheckInput name="rented" label="Alquiler contador" />
+          <CheckInput name="socialb" label="Bono Social" />
+        </HStack>
+        <HStack>
+          <SelectInput name="bonopercentage" label="Bono social porcentaje" options={optsbonopercentage} />
+          <Input name="otherconcepts" label="Otros conceptos" variant={variant("otherconcepts")} />
+        </HStack>
+    </VStack>     
+  </Grouper>
 
-{#if canCalculate()}
-    <button class="btn btn-secondary" type="submit">Calcular</button>
-{:else}
-    <button disabled class="btn btn-accent" type="submit">Calculando radiación</button>
-{/if}
-</form>
+  <Grouper label={"Paneles"} errors={errorsByKeys(['numpanels', 'panelpower', 'batterycapacity', 'inversorpower'])}>
+    <VStack>  
+      <HStack>
+        <Input name="numpanels" label="Número de paneles" variant={variant("numpanels")} />
+        <Input name="panelpower" label="Potencia del panel (Wp)" variant={variant("panelpower")} />
+      </HStack>     
+      <HStack>
+        <Input name="batterycapacity" label="Capacidad de la batería" variant={variant("batterycapacity")} />
+        <Input name="inversorpower" label="Potencia del inversor" variant={variant("inversorpower")} />
+      </HStack>
+    </VStack>     
+  </Grouper>
+
+  <Grouper label="Coche eléctrico" errors={errorsByKeys(['carannualkm', 'electriccarpower', 'carefficiency'])} >
+    <VStack>  
+      <HStack>
+        <Input class="w-1/3" name="carannualkm" label="Kilómetros anuales del coche" variant={variant("carannualkm")} />
+        <div class="w-1/3"></div>
+        <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
+      </HStack>     
+      <HStack>
+        <Input name="carefficiency" label="Eficiencia del coche" variant={variant("carefficiency")} />
+      </HStack>
+    </VStack>     
+  </Grouper>
+
+  {#if canCalculate()}
+      <button class="btn btn-secondary" type="submit">Calcular</button>
+  {:else}
+      <button disabled class="btn btn-accent" type="submit">Calculando radiación</button>
+  {/if}
+  </form>
+</div>

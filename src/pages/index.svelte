@@ -33,7 +33,7 @@
       latlng = {lat: $data.lat, lng: $data.lng}
   }
 
-  async function handleCors(){
+  async function handleCalculate(){
     const response = await axios.post("/api/calculate", {a: 5.3})
     //const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
     //const response = await axios.post("http://oracle.devme.fun/jsonpayload", {a: 5.3})    
@@ -55,9 +55,9 @@
   
 </script>
 
-<button on:click={handleCors} class="btn btn-warning">make a cors request</button>
+<button on:click={handleCalculate} class="btn btn-warning">make a cors request</button>
 
-<div class="md:w-3/5">
+<div class="grid grid-cols-1 place-items-center">
   <a href="/cake" class="link">Ir a Layer Cake example</a>
 
   <HStack>
@@ -74,8 +74,10 @@
     </div>
   </HStack>
 
-  <UserInput bind:azimut bind:angle>
-    <Mapa bind:latlng />
-  </UserInput>
+  <HStack>
+    <UserInput bind:azimut bind:angle>
+      <Mapa bind:latlng />
+    </UserInput>
+  </HStack>
 
 </div>
