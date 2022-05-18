@@ -13,10 +13,11 @@
     export let label;
     export let variant;
     export let defaultValue = 0;
-    
+    let clazz = "";
+    export { clazz as class };
 </script>
 
-<div class={`form-control $$props.class`} use:clickOutside on:click_outside={()=>showTooltip = false}>
+<div class={`form-control ${clazz}`} use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
