@@ -9,7 +9,7 @@
   <slot />
 
 </main>
-
+<!--
 <style>
     :root {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
@@ -41,3 +41,4 @@
 
 
 </style>
+-->

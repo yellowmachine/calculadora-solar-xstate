@@ -7,7 +7,7 @@
 </script>
 
 <div>
-    <button class={`btn btn-${color}`} on:click={()=>show=!show}>{label}</button>
+    <button class={`btn btn-${color} w-80`} on:click={()=>show=!show}>{label}</button>
     {#if show}
         <slot />
     {/if}

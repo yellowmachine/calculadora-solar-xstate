@@ -24,7 +24,7 @@ export function debounceRadiation(){
     const stream = new Subject()
     
     const subscription = stream.pipe(
-      skip(1),
+      skip(2),
       debounceTime(T),
       switchMap((x) => {
           console.log('dentro de switchMap', x)
