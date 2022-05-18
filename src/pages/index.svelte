@@ -61,15 +61,15 @@
   <a href="/cake" class="link">Ir a Layer Cake example</a>
 
   <HStack>
-    <div class="basis-2/5">
+    <div>
       <Input bind:value={$data.lat} variant="" label="Latitud">
           My tooltip
       </Input>
     </div>
-    <div class="basis-1/5">
+    <div>
       <button on:click={handleGo} class="btn btn-warning" disabled={!isLatitude($data.lat) || !isLongitude($data.lng)}>Ir</button>
     </div>
-    <div class="basis-2/5">
+    <div>
       <Input bind:value={$data.lng} variant="warning" label="Longitud" />
     </div>
   </HStack>

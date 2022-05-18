@@ -14,7 +14,7 @@
     export let variant;
 </script>
 
-<div class="form-control" use:clickOutside on:click_outside={()=>showTooltip = false}>
+<div class="form-control mr-4 ml-4" use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>

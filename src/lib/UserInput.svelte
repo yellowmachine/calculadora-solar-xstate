@@ -107,17 +107,17 @@ function errorsByKeys(keys){
   <Grouper label={"Tarifa"} errors={errorsByKeys(['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
     <VStack>
         <HStack>
-          <Input name="power" label="Potencia contratada kW" variant={variant("power")} />
-          <Input name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle")} />
+          <Input class="basis-1/2" name="power" label="Potencia contratada kW" variant={variant("power")} />
+          <Input class="basis-1/2" name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle")} />
         </HStack>
         <HStack>
-          <Input name="fixedrate" label="Tarifa de término fijo pico €" variant={variant("fixedrate")} />
-          <Input name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant("fixedvalle")} />
+          <Input class="basis-1/2" name="fixedrate" label="Tarifa de término fijo pico €" variant={variant("fixedrate")} />
+          <Input class="basis-1/2" name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant("fixedvalle")} />
         </HStack>
         <HStack>
-          <Input name="vallerate" label="Tarifa de energía valle €" variant={variant("vallerate")} />
-          <Input name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant("vallellano")} />
-          <Input name="picorate" label="Tarifa de energía pico €" variant={variant("picorate")} />
+          <Input class="basis-1/3" name="vallerate" label="Tarifa de energía valle €" variant={variant("vallerate")} />
+          <Input class="basis-1/3" name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant("vallellano")} />
+          <Input class="basis-1/3" name="picorate" label="Tarifa de energía pico €" variant={variant("picorate")} />
         </HStack>
         <HStack>
           <CheckInput name="rented" label="Alquiler contador" />

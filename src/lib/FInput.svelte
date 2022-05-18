@@ -17,7 +17,7 @@
     export { clazz as class };
 </script>
 
-<div class={`form-control ${clazz}`} use:clickOutside on:click_outside={()=>showTooltip = false}>
+<div class={`form-control mr-4 ml-4 ${clazz}`} use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
