@@ -15,7 +15,7 @@
     export let defaultValue = 0;
 </script>
 
-<div class="form-control" use:clickOutside on:click_outside={()=>showTooltip = false}>
+<div class={`form-control $$props.class`} use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>

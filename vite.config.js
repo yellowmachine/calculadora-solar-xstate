@@ -56,7 +56,6 @@ export default defineConfig({
   test: {
     // ...
   },
-  optimizeDeps: { include: ["@carbon/charts"] },
   // base: process.env.BASE_URL || 'https://github.com/',
   build: {
     sourcemap: process.env.SOURCE_MAP === 'true',

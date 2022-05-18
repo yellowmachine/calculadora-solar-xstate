@@ -114,8 +114,9 @@ function errorsByKeys(keys){
 <Grouper label="Coche eléctrico" errors={errorsByKeys(['carannualkm', 'electriccarpower', 'carefficiency'])} >
   <VStack>  
     <HStack>
-      <Input name="carannualkm" label="Kilómetros anuales del coche" variant={variant("carannualkm")} />
-      <Input name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
+      <Input class="w-1/3" name="carannualkm" label="Kilómetros anuales del coche" variant={variant("carannualkm")} />
+      <div class="w-1/3"></div>
+      <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
     </HStack>     
     <HStack>
       <Input name="carefficiency" label="Eficiencia del coche" defaultValue={'zzz'} variant={variant("carefficiency")} />

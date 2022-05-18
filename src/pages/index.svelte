@@ -62,7 +62,7 @@
 <button on:click={handleCors} class="btn btn-warning">make a cors request</button>
 -->
 
-<a href="/results" class="link">Ir a resultados</a>
+<a href="/cake" class="link">Ir a Layer Cake example</a>
 
 <HStack>
   <div class="basis-2/5">
