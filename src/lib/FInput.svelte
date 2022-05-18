@@ -13,6 +13,7 @@
     export let label;
     export let variant;
     export let defaultValue = 0;
+    
 </script>
 
 <div class={`form-control $$props.class`} use:clickOutside on:click_outside={()=>showTooltip = false}>

@@ -10,9 +10,10 @@ import CheckInput from './CheckInput.svelte';
 import FileDropZone from './FileDropZone.svelte';
 import { validator } from '@felte/validator-vest';
 import suite from './suite.UserInput';
+import RInput from './Input.svelte'
 
-export let deep;
-export let width;
+export let azimut;
+export let angle;
 
 let csv;
 
@@ -28,7 +29,6 @@ const optsbonopercentage = [{value: 0, description: 'Bono25%'},
 const { form, data, errors, isValid } = createForm({
     extend: validator({ suite }), 
     onSubmit: (values) => {
-        console.log(deep, width)
         //console.log(csv)
         console.log(values)
     },
@@ -52,6 +52,37 @@ function errorsByKeys(keys){
 </script>
 
 <form use:form>
+
+  <Grouper label={"Cubierta"}>
+    <VStack>
+      <HStack>
+        <div class="basis-1/2">
+          <RInput bind:value={azimut} variant="" label="Azimut">
+            My tooltip
+          </RInput>
+        </div>
+        <div class="basis-1/2">
+          <RInput bind:value={angle} variant="" label="Ángulo">
+            My tooltip
+          </RInput>
+        </div>
+      </HStack>
+      <HStack>
+        <div class="basis-1/2">
+          <Input name="width" variant="" label="Anchura">
+            My tooltip
+          </Input>
+        </div>
+        <div class="basis-1/2">
+          <Input name="deep" variant="" label="Profundidad">
+            My tooltip
+          </Input>
+        </div>
+      </HStack>
+    </VStack>
+  </Grouper>  
+
+  <slot />
 
 <Grouper label={"Consumo"} errors={errorsByKeys(['yearconsume'])}>
     <VStack>
@@ -119,7 +150,7 @@ function errorsByKeys(keys){
       <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
     </HStack>     
     <HStack>
-      <Input name="carefficiency" label="Eficiencia del coche" defaultValue={'zzz'} variant={variant("carefficiency")} />
+      <Input name="carefficiency" label="Eficiencia del coche" variant={variant("carefficiency")} />
     </HStack>
   </VStack>     
 </Grouper>
