@@ -76,7 +76,7 @@ function errorsByKeys(keys){
   <VStack>
       <HStack>
         <Input name="power" label="Potencia contratada kW" variant={variant("power")} />
-        <Input name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle)} />
+        <Input name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle")} />
       </HStack>
       <HStack>
         <Input name="fixedrate" label="Tarifa de término fijo pico €" variant={variant("fixedrate")} />
