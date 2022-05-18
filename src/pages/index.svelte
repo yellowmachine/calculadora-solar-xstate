@@ -34,10 +34,11 @@
   }
 
   async function handleCalculate(){
-    const response = await axios.post("/api/calculate", {a: 5.3})
+    //const response = await axios.post("/api/calculate", {a: 5.3})
+    const {data} = await axios.post("https://solarjl-prod-solar-sbe3e5.mo1.mogenius.io/jsonpayload", {a: 5.3})
     //const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
     //const response = await axios.post("http://oracle.devme.fun/jsonpayload", {a: 5.3})    
-    console.log(response)
+    console.log(data)
   }
 
   $: $data.lat = latlng.lat
