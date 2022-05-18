@@ -34,7 +34,8 @@
   }
 
   async function handleCors(){
-    const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
+    const response = await axios.post("/api/calculate", {a: 5.3})
+    //const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
     //const response = await axios.post("http://oracle.devme.fun/jsonpayload", {a: 5.3})    
     console.log(response)
   }
@@ -54,9 +55,7 @@
   
 </script>
 
-<!--
 <button on:click={handleCors} class="btn btn-warning">make a cors request</button>
--->
 
 <div class="md:w-3/5">
   <a href="/cake" class="link">Ir a Layer Cake example</a>
