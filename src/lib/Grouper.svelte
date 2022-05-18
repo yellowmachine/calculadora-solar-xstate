@@ -7,7 +7,7 @@
 </script>
 
 <div class="mb-2 mt-2 w-full grid grid-cols-1 place-items-center">
-    <button class={`btn btn-${color} w-80`} on:click={()=>show=!show}>{label}</button>
+    <button class={`btn btn-${color} md:w-full w-1/3`} on:click={()=>show=!show}>{label}</button>
     {#if show}
         <slot />
     {/if}

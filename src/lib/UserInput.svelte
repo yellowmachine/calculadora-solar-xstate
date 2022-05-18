@@ -105,7 +105,7 @@ function errorsByKeys(keys){
       <Input name="panelpower" label="Potencia del panel (Wp)" variant={variant("panelpower")} />
     </HStack>     
     <HStack>
-      <Input name="batterycapacity" label="Capacidad de la batería" variant={variant("batterycapacity")} defaultValue={0} />
+      <Input name="batterycapacity" label="Capacidad de la batería" variant={variant("batterycapacity")} />
       <Input name="inversorpower" label="Potencia del inversor" variant={variant("inversorpower")} />
     </HStack>
   </VStack>     
@@ -114,11 +114,11 @@ function errorsByKeys(keys){
 <Grouper label="Coche eléctrico" errors={errorsByKeys(['carannualkm', 'electriccarpower', 'carefficiency'])} >
   <VStack>  
     <HStack>
-      <Input name="carannualkm" label="" variant={variant("carannualkm")} />
-      <Input name="electriccarpower" label="" variant={variant("electriccarpower")} />            
+      <Input name="carannualkm" label="Kilómetros anuales del coche" variant={variant("carannualkm")} />
+      <Input name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
     </HStack>     
     <HStack>
-      <Input name="carefficiency" label="" variant={variant("carefficiency")} />
+      <Input name="carefficiency" label="Eficiencia del coche" defaultValue={'zzz'} variant={variant("carefficiency")} />
     </HStack>
   </VStack>     
 </Grouper>
