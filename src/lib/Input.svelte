@@ -14,11 +14,11 @@
     export let variant;
 </script>
 
-<div class="form-control" use:clickOutside on:click_outside={()=>showTooltip = false}>
+<div class="form-control mr-4 ml-4" use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
-      <input bind:value={value} type="text" placeholder="Type here" class="input input-bordered input-{variant} w-full max-w-xs">
+      <input bind:value={value} type="number" placeholder="Type here" class="input input-bordered input-{variant} w-full max-w-xs appearance-none">
     </label>
 </div>
 {#if showTooltip}
@@ -30,6 +30,16 @@
 {/if}
 
 <style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    
     #tooltip {
         background: #333;
         color: white;

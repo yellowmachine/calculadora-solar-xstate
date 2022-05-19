@@ -1,6 +1,6 @@
 <script>
     import { LayerCake, Svg } from 'layercake';
-    import Scatter from '../lib/Scatter.svelte';
+    //import Scatter from '../lib/Scatter.svelte';
     import AxisX from '../lib/AxisX.svelte';
     import AxisY from '../lib/AxisY.svelte';
     import Line from '../lib/Line.svelte';
@@ -9,9 +9,8 @@
       {x: 0, y: 0},
       {x: 5, y: 10},
       {x: 10, y: 20},
-      {x: 15, y: 30},
-      {x: 20, y: 40},
-      {x: 5, y: 10}
+      {x: 15, y: 10},
+      {x: 20, y: 0}
     ];
   </script>
 

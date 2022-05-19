@@ -10,9 +10,10 @@ import CheckInput from './CheckInput.svelte';
 import FileDropZone from './FileDropZone.svelte';
 import { validator } from '@felte/validator-vest';
 import suite from './suite.UserInput';
+import RInput from './Input.svelte'
 
-export let deep;
-export let width;
+export let azimut;
+export let angle;
 
 let csv;
 
@@ -28,105 +29,139 @@ const optsbonopercentage = [{value: 0, description: 'Bono25%'},
 const { form, data, errors, isValid } = createForm({
     extend: validator({ suite }), 
     onSubmit: (values) => {
-        console.log(deep, width)
         //console.log(csv)
+        //console.log('errors', $errors)
         console.log(values)
     },
 })
 
-function variant(k){
-  return $errors[k] ? "warning": ""
+function variant(e, k){
+  return e[k] ? "warning": ""
 }
 
-function canCalculate(){
-    return $radiation && !$radiation.error && $isValid //check usecsv and file ok!
+function canCalculate(r, isValid){
+    return r && !r.error && isValid //check usecsv and file ok!
 }
 
-function errorsByKeys(keys){
-    return keys.map(k => $errors[k]?true:false)
-    //const result = suite($data)
-    //console.log(result)
-    //return keys.map(k => result.hasErrors(k))
+function errorsByKeys(e, keys){
+    return keys.map(k => e[k]?true:false)
 }
 
 </script>
 
-<form use:form>
+<div class="w-full">
+  <form use:form>
 
-<Grouper label={"Consumo"} errors={errorsByKeys(['yearconsume'])}>
+    <Grouper label={"Cubierta"} show={true} always={true}>
+      <VStack>
+        <HStack>
+          <div class="basis-1/2">
+            <RInput bind:value={azimut} variant="" label="Azimut">
+              My tooltip
+            </RInput>
+          </div>
+          <div class="basis-1/2">
+            <RInput bind:value={angle} variant="" label="Ángulo">
+              My tooltip
+            </RInput>
+          </div>
+        </HStack>
+        <HStack>
+          <div class="basis-1/2">
+            <Input name="width" variant="" label="Anchura">
+              My tooltip
+            </Input>
+          </div>
+          <div class="basis-1/2">
+            <Input name="deep" variant="" label="Profundidad">
+              My tooltip
+            </Input>
+          </div>
+        </HStack>
+      </VStack>
+    </Grouper>  
+
+    <slot />
+
+  <Grouper label={"Consumo"} errors={errorsByKeys($errors, ['yearconsume'])}>
+      <VStack>
+          <HStack>
+              <CheckInput name="usecsv" label="Consumo real o aproximado" />
+          </HStack>
+          <HStack>
+              <VStack>
+                  <CheckInput name="ree" label="Perfil oficial ree" />
+                  <Input name="yearconsume" label="Consumo anual" variant="" />
+                  <SelectInput name="typeyearconsume" label="Tipo de consumo anual" options={optstypeyearconsume} />
+                  <SelectInput name="typedayconsume" label="Tipo de consumo diario" options={optstypedayconsume} />
+              </VStack>
+              <div>
+                  <FileDropZone bind:data={csv} />
+              </div>
+          </HStack>
+      </VStack>
+  </Grouper>
+
+  <Grouper label={"Tarifa"} errors={errorsByKeys($errors, ['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
     <VStack>
         <HStack>
-            <CheckInput name="usecsv" label="Consumo real o aproximado" />
+          <Input class="basis-1/2" name="power" label="Potencia contratada kW" variant={variant($errors, "power")} />
+          <Input class="basis-1/2" name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant($errors, "powerrentedvalle")} />
         </HStack>
         <HStack>
-            <VStack>
-                <CheckInput name="ree" label="Perfil oficial ree" />
-                <Input name="yearconsume" label="Consumo anual" variant="" />
-                <SelectInput name="typeyearconsume" label="Tipo de consumo anual" options={optstypeyearconsume} />
-                <SelectInput name="typedayconsume" label="Tipo de consumo diario" options={optstypedayconsume} />
-            </VStack>
-            <div>
-                <FileDropZone bind:data={csv} />
-            </div>
+          <Input class="basis-1/2" name="fixedrate" label="Tarifa de término fijo pico €" variant={variant($errors, "fixedrate")} />
+          <Input class="basis-1/2" name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant($errors, "fixedvalle")} />
         </HStack>
-    </VStack>
-</Grouper>
+        <HStack>
+          <Input class="basis-1/3" name="vallerate" label="Tarifa de energía valle €" variant={variant($errors, "vallerate")} />
+          <Input class="basis-1/3" name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant($errors, "vallellano")} />
+          <Input class="basis-1/3" name="picorate" label="Tarifa de energía pico €" variant={variant($errors, "picorate")} />
+        </HStack>
+        <HStack>
+          <CheckInput name="rented" label="Alquiler contador" />
+          <CheckInput name="socialb" label="Bono Social" />
+        </HStack>
+        <HStack>
+          <SelectInput name="bonopercentage" label="Bono social porcentaje" options={optsbonopercentage} />
+          <Input name="otherconcepts" label="Otros conceptos" variant={variant($errors, "otherconcepts")} />
+        </HStack>
+    </VStack>     
+  </Grouper>
 
-<Grouper label={"Tarifa"} errors={errorsByKeys(['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
-  <VStack>
+  <Grouper label={"Paneles"} errors={errorsByKeys($errors, ['numpanels', 'panelpower', 'batterycapacity', 'inversorpower'])}>
+    <VStack>  
       <HStack>
-        <Input name="power" label="Potencia contratada kW" variant={variant("power")} />
-        <Input name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle")} />
-      </HStack>
+        <Input name="numpanels" label="Número de paneles" variant={variant($errors, "numpanels")} />
+        <Input name="panelpower" label="Potencia del panel (Wp)" variant={variant($errors, "panelpower")} />
+      </HStack>     
       <HStack>
-        <Input name="fixedrate" label="Tarifa de término fijo pico €" variant={variant("fixedrate")} />
-        <Input name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant("fixedvalle")} />
+        <Input name="batterycapacity" label="Capacidad de la batería" variant={variant($errors, "batterycapacity")} />
+        <Input name="inversorpower" label="Potencia del inversor" variant={variant($errors, "inversorpower")} />
       </HStack>
-      <HStack>
-        <Input name="vallerate" label="Tarifa de energía valle €" variant={variant("vallerate")} />
-        <Input name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant("vallellano")} />
-        <Input name="picorate" label="Tarifa de energía pico €" variant={variant("picorate")} />
-      </HStack>
-      <HStack>
-        <CheckInput name="rented" label="Alquiler contador" />
-        <CheckInput name="socialb" label="Bono Social" />
-      </HStack>
-      <HStack>
-        <SelectInput name="bonopercentage" label="Bono social porcentaje" options={optsbonopercentage} />
-        <Input name="otherconcepts" label="Otros conceptos" variant={variant("otherconcepts")} />
-      </HStack>
-  </VStack>     
-</Grouper>
+    </VStack>     
+  </Grouper>
 
-<Grouper label={"Paneles"} errors={errorsByKeys(['numpanels', 'panelpower', 'batterycapacity', 'inversorpower'])}>
-  <VStack>  
-    <HStack>
-      <Input name="numpanels" label="Número de paneles" variant={variant("numpanels")} />
-      <Input name="panelpower" label="Potencia del panel (Wp)" variant={variant("panelpower")} />
-    </HStack>     
-    <HStack>
-      <Input name="batterycapacity" label="Capacidad de la batería" variant={variant("batterycapacity")} />
-      <Input name="inversorpower" label="Potencia del inversor" variant={variant("inversorpower")} />
-    </HStack>
-  </VStack>     
-</Grouper>
+  <Grouper label="Coche eléctrico" errors={errorsByKeys($errors, ['carannualkm', 'electriccarpower', 'carefficiency'])} >
+    <VStack>  
+      <HStack>
+        <Input class="w-1/3" name="carannualkm" label="Kilómetros anuales del coche" variant={variant($errors, "carannualkm")} />
+        <div class="w-1/3"></div>
+        <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant($errors, "electriccarpower")} />            
+      </HStack>     
+      <HStack>
+        <Input name="carefficiency" label="Eficiencia del coche" variant={variant($errors, "carefficiency")} />
+      </HStack>
+    </VStack>     
+  </Grouper>
 
-<Grouper label="Coche eléctrico" errors={errorsByKeys(['carannualkm', 'electriccarpower', 'carefficiency'])} >
-  <VStack>  
-    <HStack>
-      <Input class="w-1/3" name="carannualkm" label="Kilómetros anuales del coche" variant={variant("carannualkm")} />
-      <div class="w-1/3"></div>
-      <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
-    </HStack>     
-    <HStack>
-      <Input name="carefficiency" label="Eficiencia del coche" defaultValue={'zzz'} variant={variant("carefficiency")} />
-    </HStack>
-  </VStack>     
-</Grouper>
-
-{#if canCalculate()}
-    <button class="btn btn-secondary" type="submit">Calcular</button>
-{:else}
-    <button disabled class="btn btn-accent" type="submit">Calculando radiación</button>
-{/if}
-</form>
+    <div class="mb-2 mt-2 grid grid-cols-1 place-items-center">
+      {#if canCalculate($radiation, $isValid)}
+          <button class="btn btn-secondary" type="submit">Calcular</button>
+      {:else if $radiation === null}
+          <button disabled class="btn btn-accent">Calculando radiación</button>
+      {:else}
+          <button disabled class="btn btn-accent">Hay errores en el formulario</button>
+      {/if}
+    </div>
+  </form>
+</div>

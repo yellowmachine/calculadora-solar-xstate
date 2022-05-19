@@ -13,13 +13,18 @@
     export let label;
     export let variant;
     export let defaultValue = 0;
+    let clazz = "";
+    export { clazz as class };
+
+    console.log('variant', variant)
+
 </script>
 
-<div class={`form-control $$props.class`} use:clickOutside on:click_outside={()=>showTooltip = false}>
+<div class={`form-control mr-4 ml-4 ${clazz}`} use:clickOutside on:click_outside={()=>showTooltip = false}>
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
-      <input value={defaultValue} on:input name={name} type="number" class="input input-bordered input-{variant} w-full max-w-xs">
+      <input value={defaultValue} on:input name={name} type="number" class={`input input-bordered input-${variant} w-full max-w-xs`}>
     </label>
 </div>
 {#if showTooltip}
@@ -31,6 +36,16 @@
 {/if}
 
 <style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     #tooltip {
         background: #333;
         color: white;

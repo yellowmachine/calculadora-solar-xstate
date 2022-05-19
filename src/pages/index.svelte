@@ -5,15 +5,11 @@
   import axios from 'axios'
   import {debounceRadiation, radiation} from '../lib/radiation'
   import UserInput from '../lib/UserInput.svelte'
-  import Grouper from '../lib/Grouper.svelte'
-  import VStack from '../lib/VStack.svelte'
   import HStack from '../lib/HStack.svelte'
 
   let latlng={lat: $data.lat, lng: $data.lng}
   let azimut = 0.0;
   let angle = 0.0;
-  let deep = 1;
-  let width = 1;
   let stream = debounceRadiation()
 
   function isLatitude(v){
@@ -37,10 +33,12 @@
       latlng = {lat: $data.lat, lng: $data.lng}
   }
 
-  async function handleCors(){
-    const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
+  async function handleCalculate(){
+    //const response = await axios.post("/api/calculate", {a: 5.3})
+    const {data} = await axios.post("https://solarjl-prod-solar-sbe3e5.mo1.mogenius.io/jsonpayload", {a: 5.3})
+    //const response = await axios.post("http://localhost:8000/jsonpayload", {a: 5.3})
     //const response = await axios.post("http://oracle.devme.fun/jsonpayload", {a: 5.3})    
-    console.log(response)
+    console.log(data)
   }
 
   $: $data.lat = latlng.lat
@@ -58,56 +56,29 @@
   
 </script>
 
-<!--
-<button on:click={handleCors} class="btn btn-warning">make a cors request</button>
--->
+<button on:click={handleCalculate} class="btn btn-warning">make a cors request</button>
 
-<a href="/cake" class="link">Ir a Layer Cake example</a>
+<div class="grid grid-cols-1 place-items-center">
+  <a href="/cake" class="link">Ir a Layer Cake example</a>
 
-<HStack>
-  <div class="basis-2/5">
-    <Input bind:value={$data.lat} variant="" label="Latitud">
-        My tooltip
-    </Input>
-  </div>
-  <div class="basis-1/5">
-    <button on:click={handleGo} class="btn btn-warning" disabled={!isLatitude($data.lat) || !isLongitude($data.lng)}>Ir</button>
-  </div>
-  <div class="basis-2/5">
-    <Input bind:value={$data.lng} variant="warning" label="Longitud" />
-  </div>
-</HStack>
-
-<Grouper label={"Cubierta"}>
-  <VStack>
-    <HStack>
-      <div class="basis-1/2">
-        <Input bind:value={azimut} variant="" label="Azimut">
+  <HStack>
+    <div>
+      <Input bind:value={$data.lat} variant="" label="Latitud">
           My tooltip
-        </Input>
-      </div>
-      <div class="basis-1/2">
-        <Input bind:value={angle} variant="" label="Ángulo">
-          My tooltip
-        </Input>
-      </div>
-    </HStack>
-    <HStack>
-      <div class="basis-1/2">
-        <Input bind:value={width} variant="" label="Anchura">
-          My tooltip
-        </Input>
-      </div>
-      <div class="basis-1/2">
-        <Input bind:value={deep} variant="" label="Profundidad">
-          My tooltip
-        </Input>
-      </div>
-    </HStack>
-  </VStack>
-</Grouper>
+      </Input>
+    </div>
+    <div>
+      <button on:click={handleGo} class="btn btn-warning" disabled={!isLatitude($data.lat) || !isLongitude($data.lng)}>Ir</button>
+    </div>
+    <div>
+      <Input bind:value={$data.lng} variant="warning" label="Longitud" />
+    </div>
+  </HStack>
 
+  <HStack>
+    <UserInput bind:azimut bind:angle>
+      <Mapa bind:latlng />
+    </UserInput>
+  </HStack>
 
-<Mapa bind:latlng={latlng} />
-
-<UserInput {deep} {width} />
+</div>

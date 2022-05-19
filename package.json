@@ -78,6 +78,7 @@
     "@felte/validator-vest": "^1.0.4",
     "@sveltestack/svelte-query": "^1.6.0",
     "axios": "^0.26.1",
+    "d3-shape": "^3.1.0",
     "daisyui": "^2.13.3",
     "felte": "^1.1.5",
     "rxjs": "^7.5.5",
