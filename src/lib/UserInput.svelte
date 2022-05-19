@@ -35,19 +35,16 @@ const { form, data, errors, isValid } = createForm({
     },
 })
 
-function variant(k){
-  return $errors[k] ? "warning": ""
+function variant(e, k){
+  return e[k] ? "warning": ""
 }
 
 function canCalculate(){
     return $radiation && !$radiation.error && $isValid //check usecsv and file ok!
 }
 
-function errorsByKeys(keys){
-    return keys.map(k => $errors[k]?true:false)
-    //const result = suite($data)
-    //console.log(result)
-    //return keys.map(k => result.hasErrors(k))
+function errorsByKeys(e, keys){
+    return keys.map(k => e[k]?true:false)
 }
 
 </script>
@@ -86,7 +83,7 @@ function errorsByKeys(keys){
 
     <slot />
 
-  <Grouper label={"Consumo"} errors={errorsByKeys(['yearconsume'])}>
+  <Grouper label={"Consumo"} errors={errorsByKeys($errors, ['yearconsume'])}>
       <VStack>
           <HStack>
               <CheckInput name="usecsv" label="Consumo real o aproximado" />
@@ -105,20 +102,20 @@ function errorsByKeys(keys){
       </VStack>
   </Grouper>
 
-  <Grouper label={"Tarifa"} errors={errorsByKeys(['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
+  <Grouper label={"Tarifa"} errors={errorsByKeys($errors, ['power', 'powerrentedvalle', 'fixedrate', 'fixedvalle', 'vallerate', 'vallellano', 'picorate'])}>
     <VStack>
         <HStack>
-          <Input class="basis-1/2" name="power" label="Potencia contratada kW" variant={variant("power")} />
-          <Input class="basis-1/2" name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant("powerrentedvalle")} />
+          <Input class="basis-1/2" name="power" label="Potencia contratada kW" variant={variant($errors, "power")} />
+          <Input class="basis-1/2" name="powerrentedvalle" label="Potencia contratada valle (kW) 2.0TD" variant={variant($errors, "powerrentedvalle")} />
         </HStack>
         <HStack>
-          <Input class="basis-1/2" name="fixedrate" label="Tarifa de término fijo pico €" variant={variant("fixedrate")} />
-          <Input class="basis-1/2" name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant("fixedvalle")} />
+          <Input class="basis-1/2" name="fixedrate" label="Tarifa de término fijo pico €" variant={variant($errors, "fixedrate")} />
+          <Input class="basis-1/2" name="fixedvalle" label="Tarifa de termino fijo valle €" variant={variant($errors, "fixedvalle")} />
         </HStack>
         <HStack>
-          <Input class="basis-1/3" name="vallerate" label="Tarifa de energía valle €" variant={variant("vallerate")} />
-          <Input class="basis-1/3" name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant("vallellano")} />
-          <Input class="basis-1/3" name="picorate" label="Tarifa de energía pico €" variant={variant("picorate")} />
+          <Input class="basis-1/3" name="vallerate" label="Tarifa de energía valle €" variant={variant($errors, "vallerate")} />
+          <Input class="basis-1/3" name="vallellano" label="Tarifa energía llano (€/kWh)" variant={variant($errors, "vallellano")} />
+          <Input class="basis-1/3" name="picorate" label="Tarifa de energía pico €" variant={variant($errors, "picorate")} />
         </HStack>
         <HStack>
           <CheckInput name="rented" label="Alquiler contador" />
@@ -126,33 +123,33 @@ function errorsByKeys(keys){
         </HStack>
         <HStack>
           <SelectInput name="bonopercentage" label="Bono social porcentaje" options={optsbonopercentage} />
-          <Input name="otherconcepts" label="Otros conceptos" variant={variant("otherconcepts")} />
+          <Input name="otherconcepts" label="Otros conceptos" variant={variant($errors, "otherconcepts")} />
         </HStack>
     </VStack>     
   </Grouper>
 
-  <Grouper label={"Paneles"} errors={errorsByKeys(['numpanels', 'panelpower', 'batterycapacity', 'inversorpower'])}>
+  <Grouper label={"Paneles"} errors={errorsByKeys($errors, ['numpanels', 'panelpower', 'batterycapacity', 'inversorpower'])}>
     <VStack>  
       <HStack>
-        <Input name="numpanels" label="Número de paneles" variant={variant("numpanels")} />
-        <Input name="panelpower" label="Potencia del panel (Wp)" variant={variant("panelpower")} />
+        <Input name="numpanels" label="Número de paneles" variant={variant($errors, "numpanels")} />
+        <Input name="panelpower" label="Potencia del panel (Wp)" variant={variant($errors, "panelpower")} />
       </HStack>     
       <HStack>
-        <Input name="batterycapacity" label="Capacidad de la batería" variant={variant("batterycapacity")} />
-        <Input name="inversorpower" label="Potencia del inversor" variant={variant("inversorpower")} />
+        <Input name="batterycapacity" label="Capacidad de la batería" variant={variant($errors, "batterycapacity")} />
+        <Input name="inversorpower" label="Potencia del inversor" variant={variant($errors, "inversorpower")} />
       </HStack>
     </VStack>     
   </Grouper>
 
-  <Grouper label="Coche eléctrico" errors={errorsByKeys(['carannualkm', 'electriccarpower', 'carefficiency'])} >
+  <Grouper label="Coche eléctrico" errors={errorsByKeys($errors, ['carannualkm', 'electriccarpower', 'carefficiency'])} >
     <VStack>  
       <HStack>
-        <Input class="w-1/3" name="carannualkm" label="Kilómetros anuales del coche" variant={variant("carannualkm")} />
+        <Input class="w-1/3" name="carannualkm" label="Kilómetros anuales del coche" variant={variant($errors, "carannualkm")} />
         <div class="w-1/3"></div>
-        <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant("electriccarpower")} />            
+        <Input class="w-1/3" name="electriccarpower" label="Potencia de carga del coche" variant={variant($errors, "electriccarpower")} />            
       </HStack>     
       <HStack>
-        <Input name="carefficiency" label="Eficiencia del coche" variant={variant("carefficiency")} />
+        <Input name="carefficiency" label="Eficiencia del coche" variant={variant($errors, "carefficiency")} />
       </HStack>
     </VStack>     
   </Grouper>
