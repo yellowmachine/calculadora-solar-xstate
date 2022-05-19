@@ -1,7 +1,4 @@
-<!--
-  @component
-  Generates an SVG line shape using the `line` function from [d3-shape](https://github.com/d3/d3-shape).
- -->
+
  <script>
     import { getContext } from 'svelte';
     import { line, curveLinear } from 'd3-shape';
