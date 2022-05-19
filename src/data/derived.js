@@ -1,7 +1,9 @@
 import { derived } from 'svelte/store';
 import data from './r'
 
-const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+//const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 export function make_matrix_with_columns(columns){
   let ret = [];
@@ -26,7 +28,9 @@ function round_array(arr, d){
 }
 
 function prependColumn(matrix, column){
+    console.log(matrix)
   return matrix.map(function(row, i){
+      console.log(row)
     row.unshift(column[i])
     return row
   })
@@ -46,11 +50,14 @@ function get_column_as_vector(mx, index){
   return mx.map(row=>row[index])
 }
 
-function pairToXY(pair){
-    return pair.map(([x, y]) => ({x, y}))
+function pairToXY(a, b){
+    return a.map(function(e, i) {
+        return {y: e, x: b[i]}
+    });
+    //return pair.map(([x, y]) => ({x, y}))
 }
 
 export const analisisPotenciaEstimadaDemandada = derived(data, $data => round_matrix($data.analisis_potencia_estimada_demandada, 3));
-export const onlySolar = derived(analisisPotenciaEstimadaDemandada, $data => pairToXY(prependColumn($data, months)))
-export const rentedPower = derived(data, $data => pairToXY(prependColumn(new Array(12).fill($data.power))))
+export const onlySolar = derived(analisisPotenciaEstimadaDemandada, $data => pairToXY(get_column_as_vector($data, 1), months))
+//export const rentedPower = derived(data, $data => pairToXY(prependColumn(new Array(12).fill($data.power), months)))
 

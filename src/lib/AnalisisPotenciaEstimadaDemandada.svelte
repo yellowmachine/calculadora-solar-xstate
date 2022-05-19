@@ -4,13 +4,15 @@
     import AxisY from './AxisY.svelte';
     import Line from './Line.svelte';
     import Bar from './Bar.svelte';
-    import { onlySolar, rentedPower } from '../data/derived';
+    import { onlySolar, /*rentedPower*/ } from '../data/derived';
   
     const data = {
-        onlySolar,
-        rentedPower
+        onlySolar: $onlySolar,
+        //rentedPower: $rentedPower
     }
 
+    $: flatData = [...$onlySolar, /*...$rentedPower*/]
+    $: console.log(flatData)
   </script>
 
 <div class='header'>
@@ -22,9 +24,10 @@
       x='x'
       y='y'
       { data }
+      { flatData }
     >
       <Svg>
-        <Bar dataset="rentedPower" stroke="#804793FF" />
+        <!--<Bar dataset="rentedPower" stroke="#804793FF" /> -->
         <Line dataset="onlySolar" stroke="#FF6961" />
         <AxisX />
         <AxisY />
