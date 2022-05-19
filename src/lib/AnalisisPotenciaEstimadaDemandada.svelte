@@ -3,6 +3,7 @@
     import AxisX from './AxisX.svelte';
     import AxisY from './AxisY.svelte';
     import Line from './Line.svelte';
+    import Bar from './Bar.svelte';
     import { onlySolar, rentedPower } from '../data/derived';
   
     const data = {
@@ -23,7 +24,7 @@
       { data }
     >
       <Svg>
-        <Line dataset="rentedPower" stroke="#804793FF" />
+        <Bar dataset="rentedPower" stroke="#804793FF" />
         <Line dataset="onlySolar" stroke="#FF6961" />
         <AxisX />
         <AxisY />
