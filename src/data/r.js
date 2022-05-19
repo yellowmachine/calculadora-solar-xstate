@@ -1,7 +1,7 @@
 import { readable } from 'svelte/store';
 
 export default readable({
-    "power": 0.0,
+    "power": 2.0,
     "analisis_potencia_estimada_demandada": [
       [
         2.533642053604126,

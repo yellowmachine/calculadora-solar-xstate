@@ -8,10 +8,11 @@
     let { data, xGet, yGet, yRange, xScale } = getContext('LayerCake');
     export let dataset;
 
-    data = data[dataset]
+    console.log($data[dataset])
 
     $: columnWidth = d => {
-      const vals = $xGet(d);
+      const vals = $xGet({x: 2});
+      return vals;
       return Math.max(0, (vals[1] - vals[0]));
     };
   
@@ -28,16 +29,17 @@
     /** @type {Number} [strokeWidth=0] - The shape's stroke width. */
     export let strokeWidth = 0;
   
+
   </script>
   
   <g class="column-group">
-    {#each $data as d, i}
+    {#each $data[dataset] as d, i}
       <rect
         class='group-rect'
         data-id="{i}"
-        x="{$xScale.bandwidth ? $xGet(d) : $xGet(d)[0]}"
+        x="{$xGet(d)}"
         y="{$yGet(d)}"
-        width="{$xScale.bandwidth ? $xScale.bandwidth() : columnWidth(d)}"
+        width="{columnWidth({x: 2})}"
         height="{columnHeight(d)}"
         {fill}
         {stroke}
