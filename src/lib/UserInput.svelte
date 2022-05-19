@@ -39,8 +39,8 @@ function variant(e, k){
   return e[k] ? "warning": ""
 }
 
-function canCalculate(){
-    return $radiation && !$radiation.error && $isValid //check usecsv and file ok!
+function canCalculate(r, isValid){
+    return r && !r.error && isValid //check usecsv and file ok!
 }
 
 function errorsByKeys(e, keys){
@@ -155,10 +155,12 @@ function errorsByKeys(e, keys){
   </Grouper>
 
     <div class="mb-2 mt-2 grid grid-cols-1 place-items-center">
-      {#if canCalculate()}
+      {#if canCalculate($radiation, $isValid)}
           <button class="btn btn-secondary" type="submit">Calcular</button>
+      {:else if $radiation === null}
+          <button disabled class="btn btn-accent">Calculando radiación</button>
       {:else}
-          <button disabled class="btn btn-accent" type="submit">Calculando radiación</button>
+          <button disabled class="btn btn-accent">Hay errores en el formulario</button>
       {/if}
     </div>
   </form>

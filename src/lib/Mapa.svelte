@@ -9,7 +9,6 @@
 		zoom: 11,
 	};
 	let MAP_EL;
-	//let latlng={lat: 1.364917, lng: 103.822872,}
   
 	const tileUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 	const tileLayerOptions = {
@@ -29,6 +28,7 @@
   <div class="example">
 	<LeafletMap bind:this={MAP_EL} events={['click']}  on:click={(ev) => latlng = ev.detail.latlng} options={mapOptions}>
 		<TileLayer url={tileUrl} options={tileLayerOptions}/>
+		<Marker latLng={[latlng.lat, latlng.lng]}/>
 	</LeafletMap>
   </div>
   
