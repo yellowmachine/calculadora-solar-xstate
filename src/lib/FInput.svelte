@@ -21,7 +21,7 @@
     <label class="input-group">
       <span use:popperRef
       on:click={() => showTooltip = true}>{label}</span>
-      <input value={defaultValue} on:input name={name} type="number" class="input input-bordered input-{variant} w-full max-w-xs appearance-none">
+      <input value={defaultValue} on:input name={name} type="number" class="input input-bordered input-{variant} w-full max-w-xs">
     </label>
 </div>
 {#if showTooltip}
@@ -33,6 +33,16 @@
 {/if}
 
 <style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     #tooltip {
         background: #333;
         color: white;

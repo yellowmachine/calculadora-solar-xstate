@@ -27,7 +27,7 @@ const optsbonopercentage = [{value: 0, description: 'Bono25%'},
                             {value: 1, description: 'Bono40%'}]
 
 const { form, data, errors, isValid } = createForm({
-    extend: validator({ suite }), 
+    //extend: validator({ suite }), 
     onSubmit: (values) => {
         //console.log(csv)
         console.log(values)
@@ -83,7 +83,7 @@ function errorsByKeys(keys){
       </VStack>
     </Grouper>  
 
-    <slot />
+    <!--<slot />-->
 
   <Grouper label={"Consumo"} errors={errorsByKeys(['yearconsume'])}>
       <VStack>
