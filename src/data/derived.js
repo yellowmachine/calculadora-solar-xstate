@@ -57,5 +57,25 @@ function monthBarSerie(data){
 
 export const analisisPotenciaEstimadaDemandada = derived(data, $data => round_matrix($data.analisis_potencia_estimada_demandada, 3));
 export const onlySolar = derived(analisisPotenciaEstimadaDemandada, $data => monthLineSerie(get_column_as_vector($data, 1)))
-export const rentedPower = derived(data, $data => monthBarSerie(new Array(13).fill($data.power)))
+export const rentedPower = derived(data, $data => monthLineSerie(new Array(13).fill($data.power)))
+export const solarAndBattery = derived(analisisPotenciaEstimadaDemandada, $data => monthLineSerie(get_column_as_vector($data, 2)))
+export const maxActualPower = derived(analisisPotenciaEstimadaDemandada, $data => monthBarSerie(get_column_as_vector($data, 0)))
+export const heatmap1 = derived(data, $data => round_matrix($data.heatmap1, 3))
 
+export const billingSummarySelectedColumns = derived(data, $data => {
+  let d = round_matrix($data.billing_summary, 2);
+  let column0 = get_column_as_vector(d, 0);
+  let column4 = get_column_as_vector(d, 4);
+  let column5 = get_column_as_vector(d, 5);
+  let column6 = get_column_as_vector(d, 6);
+  let column10 = get_column_as_vector(d, 10);
+  let column11 = get_column_as_vector(d, 11);
+  let column12 = get_column_as_vector(d, 12);
+  return make_matrix_with_columns([column0, column4, column5, column6, column10, column11, column12]);
+})
+/*= atom((get)=>{
+  let data = round_matrix(get(billingSummaryAtom), 2);
+  
+  return prependColumn(data, [...months, 'Total']);
+});
+*/

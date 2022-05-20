@@ -1,6 +1,8 @@
  <script>
     import { getContext } from 'svelte';
     const { width, height, xScale, yRange } = getContext('LayerCake');
+
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   
     /** @type {Boolean} [gridlines=true] - Extend lines from the ticks into the chart space */
     export let gridlines = true;
@@ -15,7 +17,7 @@
     export let snapTicks = false;
   
     /** @type {Function} [formatTick=d => d] - A function that passes the current tick value and expects a nicely formatted value in return. */
-    export let formatTick = d => d;
+    export let formatTick = d => months[d]; //d;
   
     /** @type {Number|Array|Function} [ticks] - If this is a number, it passes that along to the [d3Scale.ticks](https://github.com/d3/d3-scale) function. If this is an array, hardcodes the ticks to those values. If it's a function, passes along the default tick values and expects an array of tick values in return. If nothing, it uses the default ticks supplied by the D3 function. */
     export let ticks = undefined;

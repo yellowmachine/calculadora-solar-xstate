@@ -165,3 +165,10 @@ function errorsByKeys(e, keys){
     </div>
   </form>
 </div>
+
+<style>
+  .shadow{
+    pointer-events: none;
+    opacity: 0.4;
+  }
+</style>
