@@ -1,5 +1,4 @@
 <script>
-import {radiation} from './radiation'
 import { createForm } from 'felte';
 import Grouper from './Grouper.svelte'
 import VStack from './VStack.svelte'
@@ -10,8 +9,10 @@ import CheckInput from './CheckInput.svelte';
 import FileDropZone from './FileDropZone.svelte';
 import { validator } from '@felte/validator-vest';
 import suite from './suite.UserInput';
-import RInput from './Input.svelte'
+import RInput from './Input.svelte';
+import { matchesState } from 'xstate';
 
+export let state;
 export let azimut;
 export let angle;
 
@@ -155,12 +156,16 @@ function errorsByKeys(e, keys){
   </Grouper>
 
     <div class="mb-2 mt-2 grid grid-cols-1 place-items-center">
-      {#if canCalculate($radiation, $isValid)}
+      {#if matchesState({home: 'radiationDone'}, $state.value)}
           <button class="btn btn-secondary" type="submit">Calcular</button>
-      {:else if $radiation === null}
-          <button disabled class="btn btn-accent">Calculando radiación</button>
+      {:else if matchesState({home: 'idle'}, $state.value)}
+          <div>Se necesita calcular la radiación</div>
+      {:else if matchesState({home: 'error'}, $state.value)}
+          <div>Se ha producido un error calculando la radiación</div>
+      {:else if matchesState({home: 'fetching'}, $state.value)}
+          <div>Calculando radiación</div>
       {:else}
-          <button disabled class="btn btn-accent">Hay errores en el formulario</button>
+          <div>Hay errores sin capturar</div>
       {/if}
     </div>
   </form>

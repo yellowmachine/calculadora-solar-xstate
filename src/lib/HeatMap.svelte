@@ -1,6 +1,5 @@
 <script>
 import interpolate from 'color-interpolate';
-import { bindCallback } from 'rxjs';
 
 export let data;
 
